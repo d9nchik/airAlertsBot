@@ -11,4 +11,6 @@ RUN cd cmd && go build -o /go/bin/app
 FROM alpine:latest
 RUN apk --no-cache add ca-certificates
 COPY --from=builder /go/bin/app /app
+COPY --from=builder /usr/local/go/lib/time/zoneinfo.zip /zoneinfo.zip
+ENV ZONEINFO=/zoneinfo.zip
 ENTRYPOINT /app

@@ -90,7 +90,7 @@ func (s *State) toMessage() string {
 	}
 
 	if s.IsEnabled {
-		return fmt.Sprint("🔴 ", s.DisabledAt.In(loc).Hour(), ":", s.DisabledAt.Minute(), " Повітряна тривоги")
+		return fmt.Sprint("🔴 ", s.EnabledAt.In(loc).Hour(), ":", s.EnabledAt.Minute(), " Повітряна тривоги")
 	}
 	return fmt.Sprint("🟢 ", s.DisabledAt.In(loc).Hour(), ":", s.DisabledAt.Minute(), " Відбій тривоги")
 }
