@@ -83,11 +83,16 @@ type State struct {
 }
 
 func (s *State) toMessage() string {
+	loc, err := time.LoadLocation("Europe/Kiev")
+	if err != nil {
+		log.Printf("Error loading location: %v", err)
+		loc = time.Local
+	}
 
 	if s.IsEnabled {
-		return fmt.Sprint("🔴 ", s.DisabledAt.Hour(), ":", s.DisabledAt.Minute(), " Повітряна тривоги")
+		return fmt.Sprint("🔴 ", s.DisabledAt.In(loc).Hour(), ":", s.DisabledAt.Minute(), " Повітряна тривоги")
 	}
-	return fmt.Sprint("🟢 ", s.DisabledAt.Hour(), ":", s.DisabledAt.Minute(), " Відбій тривоги")
+	return fmt.Sprint("🟢 ", s.DisabledAt.In(loc).Hour(), ":", s.DisabledAt.Minute(), " Відбій тривоги")
 }
 
 func (s *State) Equal(s2 State) bool {
