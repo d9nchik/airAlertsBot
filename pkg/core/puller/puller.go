@@ -90,9 +90,9 @@ func (s *State) toMessage() string {
 	}
 
 	if s.IsEnabled {
-		return fmt.Sprint("🔴 ", s.EnabledAt.In(loc).Hour(), ":", s.EnabledAt.Minute(), " Повітряна тривоги")
+		return fmt.Sprint("🔴 ", fmt.Sprintf("%02d", s.EnabledAt.In(loc).Hour()), ":", fmt.Sprintf("%02d", s.EnabledAt.Minute()), " Повітряна тривога")
 	}
-	return fmt.Sprint("🟢 ", s.DisabledAt.In(loc).Hour(), ":", s.DisabledAt.Minute(), " Відбій тривоги")
+	return fmt.Sprint("🟢 ", fmt.Sprintf("%02d", s.DisabledAt.In(loc).Hour()), ":", fmt.Sprintf("%02d", s.DisabledAt.Minute()), " Відбій тривоги")
 }
 
 func (s *State) Equal(s2 State) bool {
