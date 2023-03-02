@@ -53,7 +53,7 @@ func (p *Puller) Run(ctx context.Context) {
 }
 
 func getStatuses() (*Notifications, error) {
-	resp, err := http.Get("https://emapa.fra1.cdn.digitaloceanspaces.com/statuses.json")
+	resp, err := http.Get("https://vadimklimenko.com/map/statuses.json")
 	if err != nil {
 		return nil, err
 	}
